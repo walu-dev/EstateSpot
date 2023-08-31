@@ -26,7 +26,7 @@ def property_retrieve(request, pk):
 def property_create(request):
     form = propertyForm()
     if request.method == "POST":
-        form = propertyForm(request.POST)
+        form = propertyForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("/")
@@ -40,8 +40,9 @@ def property_create(request):
 def property_update(request, pk):
     properties = property.objects.get(id=pk)
     form = propertyForm(instance=properties)
+    
     if request.method == "POST":
-        form = propertyForm(request.POST, instance=properties )
+        form = propertyForm(request.POST, instance=properties, files=request.FILES )
         if form.is_valid():
             form.save()
             return redirect("/")
