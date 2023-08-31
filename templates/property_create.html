@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<hl class="text-xl text-gray-900"> Update a New property</hl>
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
